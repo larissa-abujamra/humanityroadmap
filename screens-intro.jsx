@@ -13,12 +13,9 @@ function WelcomeScreen({ onBegin }) {
             The Humanity Roadmap
           </div>
           <h1 className="display fade-up" style={{ fontSize: "clamp(26px, 3.9vw, 46px)", fontStyle: "italic", margin: "0 0 28px", lineHeight: 1.35, animationDelay: "600ms" }}>
-            <span style={{ display: "block" }}>This is not a productivity tool.</span>
-            <span style={{ display: "block", marginTop: "0.15em" }}>It's a map back to yourself.</span>
+            <span style={{ display: "block" }}>The machine cannot do this part.</span>
           </h1>
-          <p className="muted fade-up" style={{ fontSize: 17, maxWidth: 480, margin: "0 auto 56px", animationDelay: "1500ms" }}>
-            Crafted around seven qualities that make us most human.
-          </p>
+          
           <div className="fade-up" style={{ animationDelay: "2400ms" }}>
             <button className="btn" onClick={onBegin}>Begin</button>
           </div>
@@ -93,11 +90,11 @@ function FramingScreen({ onContinue }) {
           What this is for
         </div>
         <h2 className="display fade-up" style={{ fontSize: "clamp(28px, 4.2vw, 44px)", fontStyle: "italic", margin: "0 0 28px", animationDelay: "400ms" }}>
-          Seven qualities. Not traits — practices.
+          Seven qualities. 
         </h2>
         <p className="fade-up" style={{ fontSize: 18, color: "var(--ink-soft)", maxWidth: 580, margin: "0 auto", lineHeight: 1.7, animationDelay: "1000ms" }}>
           They get stronger with use. They get quieter without it. None of these are a personality you have or don't.
-          They're shapes you can choose to give time to. This year is an invitation to tend a few of them on purpose —
+          They're elements you can choose to give time to. This year is an invitation to tend a few of them on purpose —
           not all of them, and not perfectly. Just deliberately.
         </p>
       </div>
