@@ -22,7 +22,7 @@
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "x-api-key": "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",
+            "x-api-key": "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",
             "anthropic-version": "2023-06-01",
             "anthropic-dangerous-direct-browser-access": "true"
           },
@@ -32,10 +32,24 @@
             messages: [{ role: "user", content: prompt }]
           })
         });
+        if (!response.ok) {
+          const errorBody = await response.text();
+          throw new Error(`Anthropic API error ${response.status}: ${errorBody}`);
+        }
         const data = await response.json();
         return data.content[0].text;
       }
     };
+
+    // Quick connectivity check so you can validate API wiring in DevTools.
+    window.addEventListener("load", async () => {
+      try {
+        const result = await window.claude.complete("Reply with exactly: CONNECTED");
+        console.log("[Claude API Test] Success:", result);
+      } catch (err) {
+        console.error("[Claude API Test] Failed:", err);
+      }
+    });
   </script>
   <script type="text/babel" src="tweaks-panel.jsx"></script>
   <script type="text/babel" src="screens-intro.jsx"></script>
