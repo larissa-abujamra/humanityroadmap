@@ -72,7 +72,7 @@ window.MOVEMENTS = [
     epigraph: "Fear is a wasted emotion.",
     questions: [
       { id: "year_from_now", kind: "open", long: true,
-        prompt: "What do you want to be true about your life a year from now that isn't true today?",
+        prompt: "What do you want to be true about your life a year from now that might not betrue today?",
         placeholder: "Not a goal. A truth. Write it as if it were already so." },
       { id: "focus",     kind: "quality-pick", limit: 3,
         prompt: "Which of the seven do you most want to strengthen?",
