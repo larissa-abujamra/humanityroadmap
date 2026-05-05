@@ -96,6 +96,7 @@ window.MOVEMENTS = [
         options: ["Early mornings", "Late nights", "In conversation", "In solitude", "In movement", "In nature", "In creative work"] },
       { id: "in_the_way",   kind: "open", long: true,
         prompt: "What has gotten in your way before, when you've tried to change something?",
+        help: "Others have said: I start strong and then overschedule myself. Or: I wait until things calm down - they never do. Or: I do it alone and then feel unsupported and stop.",
         placeholder: "Be specific. The pattern is the thing." },
     ],
   },
