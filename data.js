@@ -61,7 +61,7 @@ window.MOVEMENTS = [
         help: "Could be a person. Could be the one with yourself.",
         placeholder: "Name it." },
       { id: "survived",   kind: "open", long: true, optional: true,
-        prompt: "What have you survived or lived through that made you more yourself?",
+        prompt: "What have you lived through that made you more yourself?",
         help: "Optional. Only if it wants to be written.",
         placeholder: "A line is enough. So is a paragraph." },
     ],
