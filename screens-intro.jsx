@@ -98,14 +98,14 @@ function FramingScreen({ onContinue }) {
           not all of them, and not perfectly. Just deliberately.
         </p>
       </div>
-
-      <div className="fade-in" style={{ animationDelay: "1800ms", width: "100%", marginTop: 48 }}>
-        <QualityArc />
-      </div>
-
       <div className="fade-up" style={{ animationDelay: "3400ms", marginTop: 32 }}>
         <button className="btn" onClick={onContinue}>I'm ready</button>
       </div>
+      <div className="fade-in" style={{ animationDelay: "1800ms", width: "100%", marginTop:20  }}>
+        <QualityArc />
+      </div>
+
+     
     </div>
   );
 }
