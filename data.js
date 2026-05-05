@@ -78,7 +78,7 @@ window.MOVEMENTS = [
         prompt: "Which of the seven do you most want to strengthen?",
         help: "Pick up to three. The ones that knock first." },
       { id: "afraid",    kind: "open",
-        prompt: "What are you most afraid of losing if nothing changes?",
+        prompt: "What matters to you most that you're currently taking for granted?",
         placeholder: "Say the quiet thing." },
     ],
   },
@@ -89,6 +89,7 @@ window.MOVEMENTS = [
     questions: [
       { id: "discretionary", kind: "choice",
         prompt: "How much of your week is genuinely yours?",
+        help: "Time that belongs to no one else - not work, not obligations, not other people's needs.",
         options: ["Less than 2 hours", "2 – 5 hours", "5 – 10 hours", "More than 10 hours"] },
       { id: "most_yourself", kind: "choice", multiple: true,
         prompt: "When are you most yourself?",
