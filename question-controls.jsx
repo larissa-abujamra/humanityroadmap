@@ -118,16 +118,31 @@ function OpenText({ value, onChange, placeholder, long }) {
   );
 }
 
-function ChoiceGrid({ value, onChange, options }) {
+function ChoiceGrid({ value, onChange, options, multiple = false, limit = null }) {
+  const selected = multiple ? (Array.isArray(value) ? value : []) : value;
+  const toggle = (opt) => {
+    if (!multiple) {
+      onChange(opt);
+      return;
+    }
+    const has = selected.includes(opt);
+    if (has) {
+      onChange(selected.filter((item) => item !== opt));
+      return;
+    }
+    if (typeof limit === "number" && selected.length >= limit) return;
+    onChange([...selected, opt]);
+  };
+
   return (
     <div className="choice-grid">
       {options.map((opt, i) => (
         <div key={opt}
-          className={`choice fade-up italic ${value === opt ? "selected" : ""}`}
+          className={`choice fade-up italic ${(multiple ? selected.includes(opt) : value === opt) ? "selected" : ""}`}
           style={{ animationDelay: `${i * 60 + 150}ms` }}
-          onClick={() => onChange(opt)}
+          onClick={() => toggle(opt)}
           role="button" tabIndex="0"
-          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onChange(opt); }}}
+          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(opt); }}}
         >
           {opt}
         </div>

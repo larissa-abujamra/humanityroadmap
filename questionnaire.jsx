@@ -57,7 +57,13 @@ function QuestionView({ question, value, onChange }) {
             <OpenText value={value} onChange={onChange} placeholder={question.placeholder} long={question.long} />
           )}
           {question.kind === "choice" && (
-            <ChoiceGrid value={value} onChange={onChange} options={question.options} />
+            <ChoiceGrid
+              value={value}
+              onChange={onChange}
+              options={question.options}
+              multiple={!!question.multiple}
+              limit={question.limit}
+            />
           )}
         </div>
       </div>
@@ -115,7 +121,7 @@ function QuestionnaireScreen({ answers, setAnswer, onComplete }) {
     if (q.kind === "open") return !!a && a.trim().length > 0;
     if (q.kind === "quality-pick") return Array.isArray(a) ? a.length > 0 : !!a;
     if (q.kind === "alloc") return a && Object.values(a).reduce((s, v) => s + v, 0) === 100;
-    if (q.kind === "choice") return !!a;
+    if (q.kind === "choice") return q.multiple ? (Array.isArray(a) && a.length > 0) : !!a;
     return true;
   })();
 

@@ -90,7 +90,7 @@ window.MOVEMENTS = [
       { id: "discretionary", kind: "choice",
         prompt: "How much of your week is genuinely yours?",
         options: ["Less than 2 hours", "2 – 5 hours", "5 – 10 hours", "More than 10 hours"] },
-      { id: "most_yourself", kind: "choice",
+      { id: "most_yourself", kind: "choice", multiple: true,
         prompt: "When are you most yourself?",
         options: ["Early mornings", "Late nights", "In conversation", "In solitude", "In movement", "In nature", "In creative work"] },
       { id: "in_the_way",   kind: "open", long: true,
