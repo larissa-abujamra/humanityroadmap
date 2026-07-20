@@ -1,111 +1,97 @@
-// Static data: qualities, questions, demo roadmap
+/* The Awe Finder — static data.
+   Attached to window so plain <script> and Babel components can share it.
+   No build step. */
+(function () {
+  "use strict";
 
-window.QUALITIES = [
-  { key: "love",          name: "Love",          color: "var(--love)",          hex: "#D4A0A0",
-    def: "How you tend the people and pieces of yourself you care for." },
-  { key: "wisdom",        name: "Wisdom",        color: "var(--wisdom)",        hex: "#C9A96E",
-    def: "What you've learned, and who you let teach you." },
-  { key: "joy",           name: "Joy",           color: "var(--joy)",           hex: "#D4C27A",
-    def: "The pleasure of being here, in this body, on this day." },
-  { key: "community",     name: "Community",     color: "var(--community)",     hex: "#8FA68E",
-    def: "The wider belonging — the table you're at, and the one you set." },
-  { key: "consciousness", name: "Consciousness", color: "var(--consciousness)", hex: "#8E8DB5",
-    def: "The quality of attention you bring to your own mind." },
-  { key: "soul",          name: "Soul",          color: "var(--soul)",          hex: "#B08898",
-    def: "The part of you that doesn't need to be useful to be real." },
-  { key: "awe",           name: "Awe",           color: "var(--awe)",           hex: "#8AAEC0",
-    def: "Letting something be larger than you, and letting that be a relief." },
-];
+  // Phase 2 — Wheel of Life. Order defines slider order and radar spoke order.
+  var DOMAINS = [
+    { key: "career",       name: "Career",               clarifier: "The work you do and how well it fits you" },
+    { key: "finances",     name: "Finances",             clarifier: "Your money situation, and your peace with it" },
+    { key: "health",       name: "Health",               clarifier: "Body, energy, sleep — how you physically feel" },
+    { key: "family",       name: "Family & Friends",     clarifier: "The people closest to you" },
+    { key: "romance",      name: "Romance",              clarifier: "Partnership, dating, or intimacy — whatever applies to you" },
+    { key: "growth",       name: "Personal Growth",      clarifier: "Learning, changing, working on yourself" },
+    { key: "fun",          name: "Fun & Recreation",     clarifier: "Play, hobbies, things you do just because" },
+    { key: "environment",  name: "Physical Environment", clarifier: "Your home, your space, your surroundings" },
+    { key: "contribution", name: "Contribution",         clarifier: "What you give beyond yourself" }
+  ];
 
-window.ALLOCATION_KEYS = [
-  "work", "relationships", "inner life", "play", "community", "creativity", "rest",
-];
+  // Phase 3 — Time & intention audit buckets.
+  var TIME_BUCKETS = [
+    { key: "work",         name: "Work",                 clarifier: "" },
+    { key: "screens",      name: "Screens & scrolling",  clarifier: "" },
+    { key: "people",       name: "People you love",      clarifier: "" },
+    { key: "rest",         name: "Rest",                 clarifier: "" },
+    { key: "movement",     name: "Movement",             clarifier: "" },
+    { key: "creating",     name: "Creating",             clarifier: "" },
+    { key: "unstructured", name: "Unstructured time",    clarifier: "time with nothing scheduled" }
+  ];
 
-// Each question has: id, kind, prompt, optional helper, optional config
-window.MOVEMENTS = [
-  {
-    id: "where",
-    title: "Where you are",
-    epigraph: "Begin where your feet are.",
-    questions: [
-      { id: "alive",    kind: "quality-pick", limit: 1,
-        prompt: "Of the seven, which feels most alive in you right now?",
-        help: "Pick one. There's no wrong answer — just an honest one." },
-      { id: "atrophied", kind: "quality-pick", limit: 1,
-        prompt: "And which feels most neglected?",
-        help: "The one that's been quiet. The one you've maybe been avoiding." },
-      { id: "time_now",  kind: "alloc",
-        prompt: "How are you spending your time, roughly?",
-        help: "Move each line until the shape feels close to your week. They'll add up to 100." },
-      { id: "time_want", kind: "alloc",
-        prompt: "And how would you want to spend it?",
-        help: "Don't be reasonable. Be honest." },
-      { id: "present",  kind: "open", long: true,
-        prompt: "When did you last feel genuinely present? What were you doing?",
-        placeholder: "Not distracted. Not performing. Just there." },
-    ],
-  },
-  {
-    id: "who",
-    title: "Who you are",
-    epigraph: "You are not a problem to solve.",
-    questions: [
-      { id: "wise_one",   kind: "open", long: true,
-        prompt: "Who in your life represents wisdom to you? What is it about them?",
-        placeholder: "A name, and what they know that you want to know." },
-      { id: "time_disappears", kind: "open",
-        prompt: "What is something you do where time disappears?",
-        placeholder: "Cooking. Long drives. A particular kind of conversation." },
-      { id: "deepen",     kind: "open",
-        prompt: "Which relationship do you most want to deepen this year?",
-        help: "Could be a person. Could be the one with yourself.",
-        placeholder: "Name it." },
-      { id: "survived",   kind: "open", long: true, optional: true,
-        prompt: "What have you lived through that made you more yourself?",
-        help: "Optional. Only if it wants to be written.",
-        placeholder: "A line is enough. So is a paragraph." },
-    ],
-  },
-  {
-    id: "want",
-    title: "What you want",
-    epigraph: "Fear is a wasted emotion.",
-    questions: [
-      { id: "year_from_now", kind: "open", long: true,
-        prompt: "What do you want to be true about your life a year from now that might not betrue today?",
-        placeholder: "Not a goal. A truth. Write it as if it were already so." },
-      { id: "focus",     kind: "quality-pick", limit: 3,
-        prompt: "Which of the seven do you most want to strengthen?",
-        help: "Pick up to three. The ones that knock first." },
-      { id: "afraid",    kind: "open",
-        prompt: "What matters to you most that you're currently taking for granted?",
-        placeholder: "Say the quiet thing." },
-    ],
-  },
-  {
-    id: "reality",
-    title: "Your reality",
-    epigraph: "A practice that fits the life you have.",
-    questions: [
-      { id: "discretionary", kind: "choice",
-        prompt: "How much of your week is genuinely yours?",
-        help: "Time that belongs to no one else - not work, not obligations, not other people's needs.",
-        options: ["Less than 2 hours", "2 – 5 hours", "5 – 10 hours", "More than 10 hours"] },
-      { id: "most_yourself", kind: "choice", multiple: true,
-        prompt: "When are you most yourself?",
-        options: ["Early mornings", "Late nights", "In conversation", "In solitude", "In movement", "In nature", "In creative work"] },
-      { id: "in_the_way",   kind: "open", long: true,
-        prompt: "What has gotten in your way before, when you've tried to change something?",
-        help: "Others have said: I start strong and then overschedule myself. Or: I wait until things calm down - they never do. Or: I do it alone and then feel unsupported and stop.",
-        placeholder: "Be specific. The pattern is the thing." },
-    ],
-  },
-];
+  // Phase 5 — micro-practices. "custom" is the "Write your own" affordance.
+  var PRACTICES = [
+    { key: "awe",       title: "The awe hunt",       desc: "Once a day, stop for one beautiful thing — a sky, a song, a face — and look at it for twenty extra seconds." },
+    { key: "gratitude", title: "The gratitude line", desc: "Each night, write one sentence about something good from today. One sentence is the whole practice." },
+    { key: "mirror",    title: "The mirror check",   desc: "Each morning while brushing your teeth, meet your own eyes and finish the sentence: “Today I am ___.”" },
+    { key: "text",      title: "One honest text",    desc: "Once a week, send one message you actually mean to someone you love. Not “hey” — the real thing." },
+    { key: "evening",   title: "The fenced evening", desc: "One evening a week with nothing scheduled and your phone in another room." },
+    { key: "start",     title: "The tiny start",     desc: "Ten minutes a day on the thing you keep postponing. Set a timer. You’re allowed to stop when it rings." },
+    { key: "custom",    title: "Write your own",     desc: "One small action, with a frequency. Keep it under a sentence." }
+  ];
 
-// Flatten for progress
-window.ALL_QUESTIONS = [];
-window.MOVEMENTS.forEach((m, mi) => {
-  m.questions.forEach((q, qi) => {
-    window.ALL_QUESTIONS.push({ ...q, movementIndex: mi, qIndex: qi, movementTitle: m.title });
-  });
-});
+  // Phase 5 — suggested practices per domain (keys into PRACTICES). "custom" always shown separately.
+  var DOMAIN_PRACTICES = {
+    career:       ["start", "gratitude", "mirror"],
+    finances:     ["gratitude", "start", "mirror"],
+    health:       ["start", "evening", "awe"],
+    family:       ["text", "evening", "gratitude"],
+    romance:      ["text", "evening", "gratitude"],
+    growth:       ["mirror", "start", "gratitude"],
+    fun:          ["awe", "evening", "start"],
+    environment:  ["awe", "gratitude", "start"],
+    contribution: ["text", "gratitude", "awe"]
+  };
+
+  // Phase 5 — humanity-layer line per domain (display italic).
+  var HUMANITY_LAYER = {
+    career:       "Career runs on wisdom — knowing what’s worth your effort and what isn’t.",
+    finances:     "Money calms down when attention shows up. This is a practice of consciousness.",
+    health:       "Health sticks when it’s fed by joy, not discipline alone.",
+    family:       "This one runs on love — the practiced kind, not just the felt kind.",
+    romance:      "Romance is love as a practice: attention, given again and again.",
+    growth:       "Growth is soul work — becoming more yourself, not someone else.",
+    fun:          "Fun is joy taken seriously.",
+    environment:  "Your surroundings are the nearest place to practice awe. Beauty is allowed at home.",
+    contribution: "Contribution is community in motion — what you give comes back as belonging."
+  };
+
+  // Phase 3 — gap reveal connection map: wheel domain -> the time bucket(s) it relates to.
+  var DOMAIN_BUCKET_MAP = {
+    family:       ["people"],
+    romance:      ["people"],
+    health:       ["movement", "rest"],
+    fun:          ["unstructured"],
+    growth:       ["creating"],
+    career:       ["creating"],
+    contribution: ["people"]
+  };
+
+  // Phase 1 — soft role-word nudge list (substring match, case-insensitive).
+  var ROLE_WORDS = [
+    "manager", "engineer", "teacher", "doctor", "lawyer", "student", "ceo",
+    "founder", "boss", "employee", "mom", "mother", "dad", "father", "wife",
+    "husband", "parent", "sister", "brother", "designer", "developer",
+    "nurse", "coach"
+  ];
+
+  window.AweData = {
+    DOMAINS: DOMAINS,
+    TIME_BUCKETS: TIME_BUCKETS,
+    PRACTICES: PRACTICES,
+    DOMAIN_PRACTICES: DOMAIN_PRACTICES,
+    HUMANITY_LAYER: HUMANITY_LAYER,
+    DOMAIN_BUCKET_MAP: DOMAIN_BUCKET_MAP,
+    ROLE_WORDS: ROLE_WORDS,
+    STORAGE_KEY: "awefinder_v1"
+  };
+})();
